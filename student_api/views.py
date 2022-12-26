@@ -17,7 +17,7 @@ def home(request):
 def student_api(request):
     if request.method == 'GET':
         students = Student.objects.all()
-        serializer = StudentSerializer(students, many=True)
+        serializer = StudentSerializer(students, many=True)  #obje birden fazla veri dönüyorsa  many=true 
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = StudentSerializer(data=request.data)
@@ -30,7 +30,7 @@ def student_api(request):
 
 @api_view(['GET', 'PUT', 'DELETE', 'PATCH'])
 def student_api_get_update_delete(request, pk):
-    student = get_object_or_404(Student, pk=pk)
+    student = get_object_or_404(Student, pk=pk)  # serializer içine direk almak yerine önce 404 içine aldıkki hata mesajını gösterebilelim 
     if request.method == 'GET':
         serializer = StudentSerializer(student)
         return Response(serializer.data, status=status.HTTP_200_OK)
