@@ -13,8 +13,8 @@ from rest_framework import status
 def home(request):
     return HttpResponse('<h1>API Page</h1>')
 
-@api_view(['GET', 'POST'])
-def student_api(request):
+@api_view(['GET', 'POST'])  #decoratorler
+def student_api(request):   #request ile gelen isteğin içeriğini alıyoruz   id varsa   onuda aşağıda ikinci parametre olarak almış
     if request.method == 'GET':
         students = Student.objects.all()
         serializer = StudentSerializer(students, many=True)  #obje birden fazla veri dönüyorsa  many=true 
